@@ -1,0 +1,57 @@
+<div class="dashboard-body">
+  <div class="dashboard-camera-btns text-center">
+    <button class="btn btn-secondary" (click)="toggleWebcam()">Toggle Webcam</button>
+    <button class="btn btn-primary" (click) = "triggerSnapShot()" *ngIf = "showWebcam">Take snapshot</button>
+    
+  </div>
+
+  <div class="camera text-center">
+    <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+    *ngIf = "showWebcam"></webcam>
+    <div *ngIf = "pictureTaken">
+      <img style="height:auto; width:500px" [src] = "webcamImage.imageAsDataUrl"/>
+    </div>
+  </div>
+  
+
+  <div class="text-center">
+    <button class="btn btn-success" (click) = "textDetection()">Text Search</button>
+  </div>
+
+  <form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" name = "getCards" #newSearch>
+    <button class="btn btn-outline-success my-2 my-sm-0" (click) = "getCards(newSearch)">Search</button>
+  </form>
+    
+  <div *ngIf = "searchMatch" style="margin-bottom:30px;">
+    <div style="font-weight:700; font-size:25px; color: green;">Card Match</div>
+    <div>
+        {{searchResultCard.fname}} {{searchResultCard.lname}} 
+    </div>
+    <div>{{searchResultCard.email}}</div>
+    <div>{{searchResultCard.phone}}</div>
+    <div><img src="data:image/png;base64,{{searchResultCard.card}}" style="width: 300px; height: auto;"></div>
+  </div>
+  <div *ngIf = "notFound">
+    <div style="font-weight:700; font-size:25px; color:red;">Card not found</div>
+  </div>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let card of currentCards">
+          <td>{{card.fname}}</td>
+          <td>{{card.lname}}</td>
+          <td>{{card.email}}</td>
+          <td>{{card.phone}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

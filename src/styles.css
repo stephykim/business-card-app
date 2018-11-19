@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.navbar {
+    margin-bottom: 10px;
+}
+
+.dashboard-body {
+    margin: 20px;
+}
+
+.dashboard-camera-btns button{
+    margin: 10px;
+}
+
+.camera {
+    margin-bottom: 10px;
+}
+
+.link {
+    color: #313638;
+}
+.link:hover {
+    text-decoration: none;
+    color: #F09D51;
+}
